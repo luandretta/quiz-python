@@ -24,13 +24,10 @@ print("Are you ready to test your skills? Please follow the steps bellow:")
 
 def clear():
     """
-    This function clears the terminal
+    Clears the terminal
     """
     os.system("cls" if os.name == "nt" else "clear")
 
-
-clear()
-lu
 
 def get_username():
     """
@@ -39,6 +36,7 @@ def get_username():
     while True:
         username = input("Please type your name and press enter: \n")
         if username.isalpha():
+            print("----------------------------")
             print("Hello " + username + ", good luck!")
             new_question()
             break
@@ -49,21 +47,31 @@ def new_question():
     """
     Run the questions propertly
     """
-    question = SHEET.worksheet("questions").get_all_values()
-    question_row = question[1]
-    print("----------------------------")
-    print(*question_row,sep='\n')
-    guesses = []
-    guesses = input("Enter your answer: \n")
+    #question = SHEET.worksheet("questions").get_all_values()
+    question = SHEET.worksheet("questions")
+   # question_row = question[1]
+    #re = type(question_row)
+    print(question)
+    for i in range(2,12):
+        row = question.row_values(i)
+        print("----------------------------")
+        print(*row, sep='\n')
+        print("----------------------------" '\n')
+    # for row in question:
+    #     print("----------------------------")
+    #     print(*question_row, sep='\n')
+    #     print("----------------------------" '\n')
 
-def clear():
-    """
-    This function clears the terminal
-    """
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-clear()
+        guess = []
+        guess = input("Enter a, b, c or d : \n").lower()
+        choices = ["a", "b", "c", "d"]
+        clear()
+        #if guess in choices:
+            #return guess
+        #print(f"Try again, {guess} is not valid. \n")
+        #question_row 
+    
+    #display score
 
 
 def main():
@@ -73,7 +81,5 @@ def main():
     username = get_username()
     #new_row = username + guesses
     #update_worksheet(new_row, "answers")
-
-
 
 main()

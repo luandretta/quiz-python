@@ -47,24 +47,22 @@ def new_question():
     """
     Run the questions propertly
     """
-    
     question = SHEET.worksheet("questions")
-    correct_answers = SHEET.worksheet("answers")
-    guesses = []
+    answers = SHEET.worksheet("answers").get("B1:K1")
     
-    for i in range(2,12):
+    guesses = []
+   
+    for i in range(2,3):
         row = question.row_values(i)
         print("----------------------------")
         print(*row, sep='\n')
         print("----------------------------" '\n')
-        #guess = ()
-        #clear()
+        #TODO
         guesses.append(verify_input())
-            
-        
-        
-    print(guesses)
-    #display score
+        if answers[0][0] == guesses[0]:
+            print(f"CORRECT {answers[0][0]}")
+        else:
+            print(f"WRONG - CORRECT is {answers[0][0]}")
 
 
 def verify_input():
@@ -83,6 +81,7 @@ def main():
     Run all programs function
     """
     username = get_username()
+    #guesses = 
     #new_row = username + guesses
     #update_worksheet(new_row, "answers")
 

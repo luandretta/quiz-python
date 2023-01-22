@@ -47,31 +47,35 @@ def new_question():
     """
     Run the questions propertly
     """
-    #question = SHEET.worksheet("questions").get_all_values()
+    
     question = SHEET.worksheet("questions")
-   # question_row = question[1]
-    #re = type(question_row)
-    print(question)
+    correct_answers = SHEET.worksheet("answers")
+    guesses = []
+    
     for i in range(2,12):
         row = question.row_values(i)
         print("----------------------------")
         print(*row, sep='\n')
         print("----------------------------" '\n')
-    # for row in question:
-    #     print("----------------------------")
-    #     print(*question_row, sep='\n')
-    #     print("----------------------------" '\n')
+        #guess = ()
+        #clear()
+        guesses.append(verify_input())
+            
+        
+        
+    print(guesses)
+    #display score
 
-        guess = []
+
+def verify_input():
+    
+
+    while True:
         guess = input("Enter a, b, c or d : \n").lower()
         choices = ["a", "b", "c", "d"]
-        clear()
-        #if guess in choices:
-            #return guess
-        #print(f"Try again, {guess} is not valid. \n")
-        #question_row 
-    
-    #display score
+        if guess in choices:
+            return guess
+        print(f"Try again, {guess} is not valid. \n")
 
 
 def main():

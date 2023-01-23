@@ -16,8 +16,8 @@ SHEET = GSPREAD.open('quiz_python')
 question = SHEET.worksheet("questions")
 answers = SHEET.worksheet("answers").get("B1:K1")
 correct_answers = answers[0]
-guesses = []
-worksheet_to_update = SHEET.worksheet("answers")
+
+
 
 
 # Initial text
@@ -43,7 +43,7 @@ def get_username():
         username = input("Please type your name and press enter: \n")
         if username.isalpha():
             print("----------------------------")
-            print("Hello " + username + ",")
+            print(f"Hello {username},")
             print("Each question has four choices(a, b, c or d).")
             print("Read the question, type your choice and hit enter.\n")
             print("Good luck!\n")
@@ -59,9 +59,10 @@ def quiz(username):
     Display score
     Update the worksheet
     """
+    worksheet_to_update = SHEET.worksheet("answers")
+    guesses = []
     j = 0
     score = 0
-    
     for i in range(2,12):
         row = question.row_values(i)
         print("----------------------------")
@@ -86,11 +87,11 @@ def quiz(username):
     # Update the worksheet
     guesses.insert(0, username)
     worksheet_to_update.append_row(guesses)
-    
+
   
 def verify_input():
     """
-    Verify if the input from user answer is valid
+    Verify if the input from user choice is valid
     """
     while True:
         guess = input("Enter a, b, c or d : \n").lower()
@@ -99,5 +100,22 @@ def verify_input():
             return guess
         print(f"Try again, {guess} is not valid. \n")
 
+def play_again():
+    while True:
+        print("Do you want to attempt the quiz again?\n")
+        choice = input("Please enter Y or N: \n").upper()
+        if choice == "Y":
+            print(f"Let's try again\n")
+            clear()
+            return True
+        elif choice == "N":
+            print("Thank you for attempting the quiz!?\n")
+            exit()
+        else:
+            print("Please choose Y or N.")
+
 
 get_username()
+
+while play_again():
+    get_username()

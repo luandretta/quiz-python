@@ -13,14 +13,19 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD.open('quiz_python')
 
-questions = SHEET.worksheet('questions')
-data = questions.get_all_values()
+question = SHEET.worksheet("questions")
+answers = SHEET.worksheet("answers").get("B1:K1")
+correct_answers = answers[0]
+guesses = []
+worksheet_to_update = SHEET.worksheet("answers")
+
 
 # Initial text
-print("FREE PYTHON QUIZ FOR NEWBIES")
-print("----------------------------")
-print("It's a fun way to check your learning progress.")
-print("Are you ready to test your skills? Please follow the steps bellow:")
+print("FREE PYTHON QUIZ FOR NEWBIES\n")
+print("----------------------------\n")
+print("It's a fun way to check your learning progress.\n")
+print("Are you ready to test your skills? Please follow the steps bellow:\n")
+
 
 def clear():
     """
@@ -32,42 +37,61 @@ def clear():
 def get_username():
     """
     Get username input from the user before starting the quiz
+    Check if the user enters a valid alpha username
     """
     while True:
         username = input("Please type your name and press enter: \n")
         if username.isalpha():
             print("----------------------------")
-            print("Hello " + username + ", good luck!")
-            new_question()
+            print("Hello " + username + ",")
+            print("Each question has four choices(a, b, c or d).")
+            print("Read the question, type your choice and hit enter.\n")
+            print("Good luck!\n")
+            quiz(username)
             break
         print(f"{username} is not valid, try again.")
 
  
-def new_question():
+def quiz(username):
     """
-    Run the questions propertly
+    Run the quiz questions propertly
+    Call the function verify_input 
+    Display score
+    Update the worksheet
     """
-    question = SHEET.worksheet("questions")
-    answers = SHEET.worksheet("answers").get("B1:K1")
+    j = 0
+    score = 0
     
-    guesses = []
-   
-    for i in range(2,3):
+    for i in range(2,12):
         row = question.row_values(i)
         print("----------------------------")
         print(*row, sep='\n')
-        print("----------------------------" '\n')
-        #TODO
+        print("----------------------------\n")
         guesses.append(verify_input())
-        if answers[0][0] == guesses[0]:
-            print(f"CORRECT {answers[0][0]}")
+        if correct_answers[j] == guesses[j]:
+            print("You are right, well done!\n")
+            score += 1
         else:
-            print(f"WRONG - CORRECT is {answers[0][0]}")
-
-
-def verify_input():
+            print("Nope, wrong answer :/ \n")
+        j += 1
     
+    # Display user's score
+    print("Calculating your score...\n")
+    print(f"You got {score} out of 10 questions right.\n")
+    if score >= 8:
+        print("Your result was great, congratulations!\n")
+    else:
+        print("Learn more and try again!\n")
 
+    # Update the worksheet
+    guesses.insert(0, username)
+    worksheet_to_update.append_row(guesses)
+    
+  
+def verify_input():
+    """
+    Verify if the input from user answer is valid
+    """
     while True:
         guess = input("Enter a, b, c or d : \n").lower()
         choices = ["a", "b", "c", "d"]
@@ -76,13 +100,4 @@ def verify_input():
         print(f"Try again, {guess} is not valid. \n")
 
 
-def main():
-    """
-    Run all programs function
-    """
-    username = get_username()
-    #guesses = 
-    #new_row = username + guesses
-    #update_worksheet(new_row, "answers")
-
-main()
+get_username()

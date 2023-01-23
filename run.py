@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import os
+import time
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -16,8 +17,6 @@ SHEET = GSPREAD.open('quiz_python')
 question = SHEET.worksheet("questions")
 answers = SHEET.worksheet("answers").get("B1:K1")
 correct_answers = answers[0]
-
-
 
 
 # Initial text
@@ -47,6 +46,8 @@ def get_username():
             print("Each question has four choices(a, b, c or d).")
             print("Read the question, type your choice and hit enter.\n")
             print("Good luck!\n")
+            time.sleep(4)
+            clear()
             quiz(username)
             break
         print(f"{username} is not valid, try again.")
@@ -74,16 +75,20 @@ def quiz(username):
             score += 1
         else:
             print("Nope, wrong answer :/ \n")
+        time.sleep(1)
         j += 1
+        clear()
     
     # Display user's score
     print("Calculating your score...\n")
+    time.sleep(2)
     print(f"You got {score} out of 10 questions right.\n")
     if score >= 8:
         print("Your result was great, congratulations!\n")
     else:
         print("Learn more and try again!\n")
-
+    print("----------------------------")
+    
     # Update the worksheet
     guesses.insert(0, username)
     worksheet_to_update.append_row(guesses)
@@ -99,17 +104,20 @@ def verify_input():
         if guess in choices:
             return guess
         print(f"Try again, {guess} is not valid. \n")
+        time.sleep(1)
 
 def play_again():
     while True:
         print("Do you want to attempt the quiz again?\n")
-        choice = input("Please enter Y or N: \n").upper()
+        choice = input("Please choose Y or N and press enter: \n").upper()
         if choice == "Y":
             print(f"Let's try again\n")
+            time.sleep(1)
             clear()
             return True
         elif choice == "N":
-            print("Thank you for attempting the quiz!?\n")
+            print("Thank you for attempting the quiz!\n")
+            time.sleep(1)
             exit()
         else:
             print("Please choose Y or N.")

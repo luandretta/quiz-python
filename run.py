@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import os
 import time
+import pyfiglet
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -20,7 +21,9 @@ correct_answers = answers[0]
 
 
 # Initial text
-print("FREE PYTHON QUIZ FOR NEWBIES\n")
+title = pyfiglet.figlet_format("PYTHON QUIZ")
+print(title)
+print("A FREE PYTHON QUIZ FOR NEWBIES")
 print("----------------------------\n")
 print("It's a fun way to check your learning progress.\n")
 print("Are you ready to test your skills? Please follow the steps bellow:\n")
@@ -75,7 +78,7 @@ def quiz(username):
             score += 1
         else:
             print("Nope, wrong answer :/ \n")
-        time.sleep(1)
+        time.sleep(0.5)
         j += 1
         clear()
     
@@ -107,6 +110,11 @@ def verify_input():
         time.sleep(1)
 
 def play_again():
+    """
+    Offer the user to attempt the quiz again.
+    If user enter Y, the game starts.
+    if user enter N, thank you message is displayed and program exit
+    """
     while True:
         print("Do you want to attempt the quiz again?\n")
         choice = input("Please choose Y or N and press enter: \n").upper()
@@ -117,6 +125,8 @@ def play_again():
             return True
         elif choice == "N":
             print("Thank you for attempting the quiz!\n")
+            game_over = pyfiglet.figlet_format("Game over")
+            print(game_over)
             time.sleep(1)
             exit()
         else:

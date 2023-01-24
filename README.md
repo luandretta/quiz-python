@@ -33,8 +33,11 @@ A live demo can be found [here](). The Application was deployes by Heroku.
 * Heroku - to deploy the application
 * Gitpod - to create the website
 * Github - to store the repository of website and deploy it
-* Google Sheets API 
-For this project a Code Institute template and Google Sheets API were used to handle the data automation.
+* Libraries - os to clear the terminal, time to cause delay and pyfiglet to create fancy texts
+* Google Sheets API were used to handle the data automation.
+
+For this project a [Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template), which provides all the files I needed to run the mock terminal in the browser.
+
 The questions and options are collected from the spreadsheet and the users' choices update it. 
 
 - - - 
@@ -46,10 +49,11 @@ The questions and options are collected from the spreadsheet and the users' choi
 
 
 ## User stories:
-* As a new user, I expetc to easily to understand the main purpose of the site and navigate without complications.
-* I can understand how I play the quiz 
-* I want to see my results
-* I can play again 
+* As a new user, I expetc to easily to have an idea of what the program is about.
+* I want to be guided and informed how I can play the quiz 
+* I want to have a clear feedback from inputs
+* I want to have option either to play again or to exit the program
+* I expect to restart the quiz 
 
 ## How to play:
 - Firstly, the user needs to enter a valid name to start the game.
@@ -62,7 +66,10 @@ The questions and options are collected from the spreadsheet and the users' choi
 - - -
 # Design
 
-## Workflow
+As a student at Code Institute I'm not allow to change
+
+## Flowchart
+This Flowchart was created using drawio to summarise the structure and logic of the application.
 
 
 ## Features
@@ -78,21 +85,9 @@ The questions and options are collected from the spreadsheet and the users' choi
 ### Future Implementations
 - Various question levels
 - Library of questions to be used randomly
-- Graphs to evaluate which questions had the most hits or errors, error and hit percentages for each question
+- Graphs to evaluate which questions had the most hits or errors, error and hit percentages for each question. 
 
-
-## Accessibility
-The website is as accessible as possible:
-- Using semantic HTML
-- Ensuring that there is a sufficient colour contrast throughtout the site.
-- Using descriptive aria-label in the buttons
-- Providing information for screen readears where there are icons used and no text.
-- Confirming through lighthouse in devtools.
-
-## Color Scheme
-Blue tones were chosen to have harmony on the site, matching the background, which radiates peace. The color blue is linked to productivity and success, and also transmits tranquility; perfect for looking at your tasks without feeling under pressure.
-
-
+Graphical libraries will not deploy to heroku and deployment is necessary for completion and submission of my project.
 
 - - -
 # Deployment
@@ -128,26 +123,30 @@ It can take some time for the page to be fully deployed.
 ---
 # Testing 
 The different aspects of the site work as intended and have an expected outcome providing an easy and straightforward way for the users to achieve their goals.
-The terminal was used during the development of the application to identify and resolve any issues as it progressed.
-The performance was tested manual and automated testing.
+The terminal was used during the development of the application to identify and resolve any issues as it progressed, testing correct and incorrect user inputs.
 
 ## Functionality
 ### Validators
-CI Python Linter was used to validate this project.
+CI Python Linter was used to validate this project, no errors were returned.
 
 
-
-### Manual as an user: 
- 
-
+### Manual: 
 
 |N.| Test Label | Test Action | Expected Outcome | Test Outcome |
 |:---|:--- |:--- |:--- |:--- |
 |1| Type valid username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
 |2| Type invalid username | On input field, attempt to type a invalid username (with numbers) | Username was invalid and user needs to enter a valid username | PASS |
-|3| Quiz choices | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
-|4| Quiz choices | On input field, attempt to type a invalid choice (number, empty or other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
-|5| Quiz questions| The quiz starts with the first question, after user choice, runs the following question | The questions are displayed correctly| PASS |
+|3| Quiz questions| The quiz starts with the first question, after user choice, runs the following question | All questions are displayed correctly| PASS |
+|4| Quiz choices | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
+|5| Quiz choices | On input field, attempt to type a invalid choice (number, empty or other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
+
+|6| Score| Attempt to score 10 | The score increases by one for each right choice| PASS |
+|7| Score| Attempt to score 5 | The score increases by one for each right choice| PASS |
+|8| Score| Attempt to score 0 | The score increases by one for each right choice| PASS |
+|9| Play again| User wants to play again and enters y| The quiz starts again asking username| PASS |
+|10| Play again| User doesn't want to play again and enters n| The quiz ends| PASS |
+|11| Restart Game Button| Click on the restart game button| The quiz restarts | PASS |
+|12| Update the worksheet| Check the answers worksheet| The worksheet was updated with user answers correctly| PASS |
 
 
 

@@ -55,12 +55,12 @@ def get_username():
             print("Good luck!\n")
             time.sleep(4)
             clear()
-            quiz()
+            quiz(username)
             break
         print(f"{username} is not valid, try again.")
 
 
-def quiz():
+def quiz(username):
     """
     Runs the quiz questions appropriately
     Calls the  verify_input function to validate the user's choice
@@ -99,6 +99,7 @@ def quiz():
     print("----------------------------")
 
     # Updates the worksheet
+    guesses.insert(0, username)
     worksheet_to_update.append_row(guesses)
 
 

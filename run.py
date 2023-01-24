@@ -3,6 +3,8 @@ from google.oauth2.service_account import Credentials
 import os
 import time
 import pyfiglet
+# import colorama
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -38,8 +40,10 @@ def clear():
 
 def get_username():
     """
-    Get username input from the user before starting the quiz
-    Check if the user enters a valid alpha username
+    Get the username input from the user
+    Run a while loop to collect a valid alpha username of data from user
+    via the terminal. The loop will repeatedly request data, until it is valid
+    When the username is valid, then the quiz function will be called
     """
     while True:
         username = input("Please type your name and press enter: \n")
@@ -55,19 +59,21 @@ def get_username():
             break
         print(f"{username} is not valid, try again.")
 
- 
+
 def quiz(username):
     """
-    Run the quiz questions propertly
-    Call the function verify_input 
-    Display score
-    Update the worksheet
+    Runs the quiz questions appropriately
+    Calls the  verify_input function to validate the user's choice
+    Each user choice will be check as right or wrong
+    For each right answer increases the score by 1
+    Displays score when the quiz is over
+    Updates the worksheet
     """
     worksheet_to_update = SHEET.worksheet("answers")
     guesses = []
     j = 0
     score = 0
-    for i in range(2,12):
+    for i in range(2, 12):
         row = question.row_values(i)
         print("----------------------------")
         print(*row, sep='\n')
@@ -81,39 +87,41 @@ def quiz(username):
         time.sleep(0.5)
         j += 1
         clear()
-    
-    # Display user's score
+
+    # Displays the user's score
     print("Calculating your score...\n")
     time.sleep(2)
     print(f"You got {score} out of 10 questions right.\n")
-    if score >= 8:
+    if score >= 7:
         print("Your result was great, congratulations!\n")
     else:
         print("Learn more and try again!\n")
     print("----------------------------")
-    
-    # Update the worksheet
+
+    # Updates the worksheet 
     guesses.insert(0, username)
     worksheet_to_update.append_row(guesses)
 
-  
+
 def verify_input():
     """
-    Verify if the input from user choice is valid
+    Verifies if the input of user's choice is valid
+    Executes a loop until the input is a, b, c or d
     """
     while True:
         guess = input("Enter a, b, c or d : \n").lower()
         choices = ["a", "b", "c", "d"]
         if guess in choices:
             return guess
-        print(f"Try again, {guess} is not valid. \n")
+        print(f"Try again, {guess} is not valid.\n")
         time.sleep(1)
+
 
 def play_again():
     """
-    Offer the user to attempt the quiz again.
-    If user enter Y, the game starts.
-    if user enter N, thank you message is displayed and program exit
+    Offers the user to attempt the quiz again.
+    If user enters Y, the game starts.
+    if user enters N, thank you message is displayed and the program exits
     """
     while True:
         print("Do you want to attempt the quiz again?\n")

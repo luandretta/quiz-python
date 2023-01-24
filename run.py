@@ -3,7 +3,6 @@ import time
 import pyfiglet
 import gspread
 from google.oauth2.service_account import Credentials
-
 # import colorama
 
 
@@ -56,12 +55,12 @@ def get_username():
             print("Good luck!\n")
             time.sleep(4)
             clear()
-            quiz(username)
+            quiz()
             break
         print(f"{username} is not valid, try again.")
 
 
-def quiz(username):
+def quiz():
     """
     Runs the quiz questions appropriately
     Calls the  verify_input function to validate the user's choice
@@ -99,8 +98,7 @@ def quiz(username):
         print("Learn more and try again!\n")
     print("----------------------------")
 
-    # Updates the worksheet 
-    guesses.insert(0, username)
+    # Updates the worksheet
     worksheet_to_update.append_row(guesses)
 
 
@@ -128,8 +126,8 @@ def play_again():
         print("Do you want to attempt the quiz again?\n")
         choice = input("Please choose Y or N and press enter: \n").upper()
         if choice == "Y":
-            print(f"Let's try again\n")
-            time.sleep(1)
+            print("Let's try it again\n")
+            time.sleep(1.0)
             clear()
             return True
         elif choice == "N":

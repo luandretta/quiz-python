@@ -1,3 +1,7 @@
+"""
+A FREE PYTHON QUIZ FOR NEWBIES
+autor: Lucimeri Andretta
+"""
 import os
 import time
 import pyfiglet
@@ -12,23 +16,14 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD.open('quiz_python')
+SHEET = GSPREAD.open("quiz_python")
 
 question = SHEET.worksheet("questions")
 answers = SHEET.worksheet("answers").get("B1:K1")
 correct_answers = answers[0]
-
-
-# Initial text
-title = pyfiglet.figlet_format("PYTHON QUIZ")
-print(title)
-print("A FREE PYTHON QUIZ FOR NEWBIES")
-print("----------------------------\n")
-print("It's a fun way to check your learning progress.\n")
-print("Are you ready to test your skills? Please follow the steps bellow:\n")
 
 
 def clear():
@@ -46,7 +41,8 @@ def get_username():
     When the username is valid, then the quiz function will be called
     """
     while True:
-        username = input("Please type your name and press enter: \n")
+        print("Please type your name and press enter:")
+        username = input("Only letters allowed \n").strip()
         if username.isalpha():
             print("----------------------------")
             print(f"Hello {username},")
@@ -57,7 +53,7 @@ def get_username():
             clear()
             quiz(username)
             break
-        print(f"{username} is not valid, try again.")
+        print(f"{username} is not valid. Try again.")
 
 
 def quiz(username):
@@ -71,21 +67,22 @@ def quiz(username):
     """
     worksheet_to_update = SHEET.worksheet("answers")
     guesses = []
-    j = 0
+    current_question_i = 0
     score = 0
-    for i in range(2, 12):
-        row = question.row_values(i)
+    for question_row in range(2, 12):
+        row = question.row_values(question_row)
         print("----------------------------")
         print(*row, sep='\n')
         print("----------------------------\n")
-        guesses.append(verify_input())
-        if correct_answers[j] == guesses[j]:
+        user_guesses = verify_input()
+        guesses.append(user_guesses)
+        if correct_answers[current_question_i] == guesses[current_question_i]:
             print("You are right, well done!\n")
             score += 1
         else:
             print("Nope, wrong answer :/ \n")
         time.sleep(0.5)
-        j += 1
+        current_question_i += 1
         clear()
 
     # Displays the user's score
@@ -109,7 +106,7 @@ def verify_input():
     Executes a loop until the input is a, b, c or d
     """
     while True:
-        guess = input("Enter a, b, c or d : \n").lower()
+        guess = input("Enter a, b, c or d : \n").lower().strip()
         choices = ["a", "b", "c", "d"]
         if guess in choices:
             return guess
@@ -125,7 +122,7 @@ def play_again():
     """
     while True:
         print("Do you want to attempt the quiz again?\n")
-        choice = input("Please choose Y or N and press enter: \n").upper()
+        choice = input("Choose Y or N and press enter: \n").upper().strip()
         if choice == "Y":
             print("Let's try it again\n")
             time.sleep(1.0)
@@ -141,7 +138,25 @@ def play_again():
             print("Please choose Y or N.")
 
 
-get_username()
+def main():
+    """
+    Prints initial text
+    Calls the get_username fuction
+    """
+    # Initial text
+    title = pyfiglet.figlet_format("PYTHON QUIZ")
+    print(title)
+    print("A FREE PYTHON QUIZ FOR NEWBIES")
+    print("----------------------------\n")
+    print("It's a fun way to check your learning progress.\n")
+    print("Are you ready to test your skills?\n")
+    print("Please follow the steps bellow:\n")
 
-while play_again():
     get_username()
+
+    while play_again():
+        get_username()
+
+
+if __name__ == "__main__":
+    main()

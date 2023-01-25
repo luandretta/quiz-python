@@ -3,12 +3,12 @@
 The Python Quiz is a short knowledge test about python for newbies with 10  multiple choice questions.
 The institutions that offer python courses could apply the quiz to their students and analyze the data to see what the students have the most difficulty with. The spreadsheet can be used to generate graphs to facilitate data analysis. 
 
-![Python Quiz](documentation/responsiveness.PNG)
+![Python Quiz](documentation/initial.png)
 
 
 ## Demo
 
-A live demo can be found [here](https://git.heroku.com/quizpython.git). The Application was deployes by Heroku.
+A live demo can be found [here](https://quizpython.herokuapp.com/). The Application was deployes by Heroku.
 
 - - -
 
@@ -38,7 +38,9 @@ A live demo can be found [here](https://git.heroku.com/quizpython.git). The Appl
 
 For this project a [Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template), which provides all the files I needed to run the mock terminal in the browser.
 
-The questions and options are collected from the spreadsheet and the users' choices update it. 
+The questions and options are collected from the questions worksheet and the choices from update the answers worksheet. 
+![Spreadsheet](documentation/questions.png)
+![Spreadsheet](documentation/answers.png)
 
 - - - 
 
@@ -73,6 +75,8 @@ Due to the template that is added in the front-end files needed to give the user
 ## Flowchart
 This Flowchart was created using drawio to summarise the structure and logic of the application.
 
+![Flowchart](documentation/flowchart%20.png)
+
 
 ## Features
 
@@ -103,56 +107,31 @@ Deployments steps are as follows, after account setup:
 * Add a unique app name and then choose a region closest to you (EU or USA)
 * Click on Create App
 
-The sensitive data needs to be kept secret and Heroku will build the app using the code in the Github. The creds.json file is protected in .gitignore file and these credentials are needed in order to connect to API. To allow the Heroku Application to access the spreadsheet the following steps are needed:
+In order for the project to run on Heroku, Heroku is needed to install the dependencies. 
+* In the terminal write the following commando 'pip3 freeze > requirements.txt' to create a list of requirements. The list of dependencies will go into .requirements.txt file.
+
+The sensitive data needs to be kept secret and Heroku will build the app using the code in the Github. The creds.json file is protected in gitignore file and these credentials are needed in order to connect to API. To allow the Heroku Application to access the spreadsheet the following steps are needed:
 
 * From the new app Settings, click Reveal Config Vars, and set the value of KEY to CREDS (all capital letters), and go to the repository, copy the entire creds.json then paste it into the VALUE field. Then click "Add".
-
 * Further down, to support dependencies, select Add Buildpack.
 * The order of the buildpacks is important, select Python first, then click "Save changes". Then add Node.js second and click "Save changes" again. If they are not in this order, you can drag them to rearrange them.
-
-You can install this project's requirements (where applicable) using: pip3 install -r requirements.txt. If you have your own packages that have been installed, then the requirements file needs updated using: pip3 freeze --local > requirements.txt
-
-
 * Go to "Deploy" and select "GitHub" in "Deployment method"
 * To connect Heroku app to your Github repository code enter your repository name, click 'Search' and then 'Connect' when it shows below
 * Choose the branch you want to buid your app from
 * If prefered, click on "Enable Automatic Deploys", which keeps the app up to date with your GitHub repository
 * Wait for the app to build. Once ready you will see the “App was successfully deployed” message and a 'View' button to take you to your deployed link.
 
-Heroku needs two additional files in order to deploy properly.
-* requirements.txt
-* Procfile
-
-
-
-The Procfile can be created with the following command: echo web: node index.js > Procfile
-
-For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
-
-1. In the Terminal/CLI, connect to Heroku using this command: heroku login -i
-2. Set the remote for Heroku: heroku git:remote -a <app_name> (replace app_name with your app, without the angle-brackets)
-3. After performing the standard Git add, commit, and push to GitHub, you can now type: git push heroku main
-4.The frontend terminal should now be connected and deployed to Heroku.
-
-
-
-
-
- [GitHub repository](https://github.com/luandretta/quiz-python) 
+[GitHub repository](https://github.com/luandretta/quiz-python) 
 
 
 ## Run locally
+
 **Forking the GitHub Repository**
 1. Login or Sign Up to GitHub.
-2. Open the project [repository](https://github.com/luandretta/my-to-do-list).
+2. Open the project [repository](https://github.com/luandretta/quiz-python).
 3. Click the Fork button in the top right corner.
+4. Copy of the repository will be in your own GitHub account.
 
-**Making a Local Clone**
-1. Login or Sign Up to GitHub.
-2. Open the project [repository](https://github.com/luandretta/my-to-do-list).
-3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
-4. Open the terminal in the code editor of your choice and change the current working directory to the location you want to use for the cloned directory.
-5. Type 'git clone' into the terminal and then paste the link you copied in step 6. Press enter.
 
 
 ---
@@ -163,7 +142,7 @@ The terminal was used during the development of the application to identify and 
 ## Functionality
 ### Validator
 CI Python Linter was used to validate this project, no errors were returned.
-
+![CI Python Linter](documentation/python_linter.png)
 
 ### Manual: 
 
@@ -171,18 +150,26 @@ CI Python Linter was used to validate this project, no errors were returned.
 |:---|:--- |:--- |:--- |:--- |
 |1| Type valid username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
 |2| Type invalid username | On input field, attempt to type a invalid username (with numbers) | Username was invalid and user needs to enter a valid username | PASS |
-|3| Quiz questions| The quiz starts with the first question, after user choice, runs the following question | All questions are displayed correctly| PASS |
-|4| Quiz choices | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
-|5| Quiz choices | On input field, attempt to type a invalid choice (number, empty or other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
-
-|6| Score| Attempt to score 10 | The score increases by one for each right choice| PASS |
-|7| Score| Attempt to score 5 | The score increases by one for each right choice| PASS |
-|8| Score| Attempt to score 0 | The score increases by one for each right choice| PASS |
-|9| Play again| User wants to play again and enters y| The quiz starts again asking username| PASS |
-|10| Play again| User doesn't want to play again and enters n| The quiz ends| PASS |
-|11| Restart Game Button| Click on the restart game button| The quiz restarts | PASS |
-|12| Update the worksheet| Check the answers worksheet| The worksheet was updated with user answers correctly| PASS |
-
+|3| Type whitespaces before username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
+|4| Quiz questions| The quiz starts with the first question, after a valid choice from user, runs the following question | All questions are displayed correctly| PASS |
+|5| Valid choice | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
+|6| Invalid choice | On input field, attempt to type a invalid choice (number, empty and other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
+|7| Display correct answer| Type a correct answer | It displays a message confirming the correct choice| PASS |
+|8| Display incorrect answer| Type a incorrect answer | It displays a message confirming the incorrect choice| PASS |
+|9| Score 10 | Attempt to score 10 | The score increases by one for each right choice and total = 10| PASS |
+|10| Score 5 | Attempt to score 5 | The score increases by one for each right choice and total = 5| PASS |
+|11| Score 0 | Attempt to score 0 | The score will be 0 | PASS |
+|12| Final message score >= 7 | Score 7 or more  | It displays a congratulation message correctly | PASS |
+|13| Final message score < 7 | Score < 7  | It displays an enconraging message to try the quiz again | PASS |
+|14| Play again | User wants to play again and enters y| The quiz starts again asking username| PASS |
+|15| Exit | User doesn't want to play again and enters n| The quiz ends| PASS |
+|16| Invalid Input (Y/N) | Type invalid letter | A valid input is required| PASS |
+|17| Invalid Input (Y/N) | Type  number | A valid input is required| PASS |
+|18| Invalid Input (Y/N) | Empty input | A valid input is required| PASS |
+|19| Input with whitespace (Y/N) | Attempt to leave some whitespaces before valid input | Input is valid| PASS |
+|20| Input y or n | Type y in smallcase | Input is valid| PASS |
+|21| Restart Game Button| Click on the restart game button| The quiz restarts | PASS |
+|22| Update the worksheet| Check the answers in the worksheet| The worksheet was updated with user answers correctly| PASS |
 
 
 
@@ -196,6 +183,7 @@ It was checked on Chrome, Firefox, Safari and Edge. Using Safari, only the sans-
 
 ## Solved bugs
 * 
+![Python Quiz](documentation/bug_1.png)
 
 
 # Credits

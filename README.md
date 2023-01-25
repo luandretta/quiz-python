@@ -8,7 +8,7 @@ The institutions that offer python courses could apply the quiz to their student
 
 ## Demo
 
-A live demo can be found [here](). The Application was deployes by Heroku.
+A live demo can be found [here](https://git.heroku.com/quizpython.git). The Application was deployes by Heroku.
 
 - - -
 
@@ -49,6 +49,7 @@ The questions and options are collected from the spreadsheet and the users' choi
 
 
 ## User stories:
+
 * As a new user, I expetc to easily to have an idea of what the program is about.
 * I want to be guided and informed how I can play the quiz 
 * I want to have a clear feedback from inputs
@@ -56,6 +57,7 @@ The questions and options are collected from the spreadsheet and the users' choi
 * I expect to restart the quiz 
 
 ## How to play:
+
 - Firstly, the user needs to enter a valid name to start the game.
 - Secondly, the user can read the instructions.
 - Thirdly, the quiz will start and the user needs to guess a, b, c or d as his/her choice.
@@ -66,13 +68,14 @@ The questions and options are collected from the spreadsheet and the users' choi
 - - -
 # Design
 
-As a student at Code Institute I'm not allow to change
+Due to the template that is added in the front-end files needed to give the users a way to interact with this project in a fake terminal on a web page, no changes in other files were needed.
 
 ## Flowchart
 This Flowchart was created using drawio to summarise the structure and logic of the application.
 
 
 ## Features
+
 ### Existing Features
 - Username
 - Introduction
@@ -91,33 +94,62 @@ Graphical libraries will not deploy to heroku and deployment is necessary for co
 
 - - -
 # Deployment
-This site is hosted using GitHub pages, deployed directly from the master branch. The deployed site will update automatically upon new commits to the master branch. In order for the site to deploy correctly on GitHub pages, the landing page must be named index.html.
+Gitpod IDE was used to write the code for this project and the Application has been deployed from GitHub to Heroku.
 
-To deploy this page to GitHub Pages from its [GitHub repository](https://github.com/luandretta/my-to-do-list), the following steps were taken: 
-1. Login or Sign Up to GitHub.
-2. Open the project repository.
-3. From the menu items near the top of the page, select **Settings**.
-![Deployment](documentation/deployment.PNG)
+## Heroku Deployment
+Deployments steps are as follows, after account setup:
 
-4. Click on "Pages" in the left hand navigation panel.
-5. Under "Source", choose which branch to deploy. This should be Main for newer repositories (older repositories may still use Master).
-6. Choose which folder to deploy from, usually "/root".
-7. Click "Save", then wait for it to be deployed. 
-It can take some time for the page to be fully deployed.
-8. Your URL will be displayed above "Source"
+* Select New in the top-right corner of your Heroku Dashboard, and select Create new app from the dropdown menu.
+* Add a unique app name and then choose a region closest to you (EU or USA)
+* Click on Create App
+
+The sensitive data needs to be kept secret and Heroku will build the app using the code in the Github. The creds.json file is protected in .gitignore file and these credentials are needed in order to connect to API. To allow the Heroku Application to access the spreadsheet the following steps are needed:
+
+* From the new app Settings, click Reveal Config Vars, and set the value of KEY to CREDS (all capital letters), and go to the repository, copy the entire creds.json then paste it into the VALUE field. Then click "Add".
+
+* Further down, to support dependencies, select Add Buildpack.
+* The order of the buildpacks is important, select Python first, then click "Save changes". Then add Node.js second and click "Save changes" again. If they are not in this order, you can drag them to rearrange them.
+
+7. Go to "Deploy" and select "GitHub" in "Deployment method"
+8. To connect Heroku app to your Github repository code enter your repository name, click 'Search' and then 'Connect' when it shows below
+9. Choose the branch you want to buid your app from
+10. If prefered, click on "Enable Automatic Deploys", which keeps the app up to date with your GitHub repository
+11. Wait for the app to build. Once ready you will see the “App was successfully deployed” message and a 'View' button to take you to your deployed link.
+
+Heroku needs two additional files in order to deploy properly.
+* requirements.txt
+* Procfile
+
+You can install this project's requirements (where applicable) using: pip3 install -r requirements.txt. If you have your own packages that have been installed, then the requirements file needs updated using: pip3 freeze --local > requirements.txt
+
+The Procfile can be created with the following command: echo web: node index.js > Procfile
+
+For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
+
+1. In the Terminal/CLI, connect to Heroku using this command: heroku login -i
+2. Set the remote for Heroku: heroku git:remote -a <app_name> (replace app_name with your app, without the angle-brackets)
+3. After performing the standard Git add, commit, and push to GitHub, you can now type: git push heroku main
+4.The frontend terminal should now be connected and deployed to Heroku.
+
+
+
+
+
+ [GitHub repository](https://github.com/luandretta/), 
+
 
 ## Run locally
-**Fork**
+**Forking the GitHub Repository**
 1. Login or Sign Up to GitHub.
 2. Open the project [repository](https://github.com/luandretta/my-to-do-list).
 3. Click the Fork button in the top right corner.
 
-**Clone**
+**Making a Local Clone**
 1. Login or Sign Up to GitHub.
 2. Open the project [repository](https://github.com/luandretta/my-to-do-list).
 3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
 4. Open the terminal in the code editor of your choice and change the current working directory to the location you want to use for the cloned directory.
-5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 6. Press enter.
 
 
 ---
@@ -126,7 +158,7 @@ The different aspects of the site work as intended and have an expected outcome 
 The terminal was used during the development of the application to identify and resolve any issues as it progressed, testing correct and incorrect user inputs.
 
 ## Functionality
-### Validators
+### Validator
 CI Python Linter was used to validate this project, no errors were returned.
 
 

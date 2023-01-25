@@ -110,17 +110,20 @@ The sensitive data needs to be kept secret and Heroku will build the app using t
 * Further down, to support dependencies, select Add Buildpack.
 * The order of the buildpacks is important, select Python first, then click "Save changes". Then add Node.js second and click "Save changes" again. If they are not in this order, you can drag them to rearrange them.
 
-7. Go to "Deploy" and select "GitHub" in "Deployment method"
-8. To connect Heroku app to your Github repository code enter your repository name, click 'Search' and then 'Connect' when it shows below
-9. Choose the branch you want to buid your app from
-10. If prefered, click on "Enable Automatic Deploys", which keeps the app up to date with your GitHub repository
-11. Wait for the app to build. Once ready you will see the “App was successfully deployed” message and a 'View' button to take you to your deployed link.
+You can install this project's requirements (where applicable) using: pip3 install -r requirements.txt. If you have your own packages that have been installed, then the requirements file needs updated using: pip3 freeze --local > requirements.txt
+
+
+* Go to "Deploy" and select "GitHub" in "Deployment method"
+* To connect Heroku app to your Github repository code enter your repository name, click 'Search' and then 'Connect' when it shows below
+* Choose the branch you want to buid your app from
+* If prefered, click on "Enable Automatic Deploys", which keeps the app up to date with your GitHub repository
+* Wait for the app to build. Once ready you will see the “App was successfully deployed” message and a 'View' button to take you to your deployed link.
 
 Heroku needs two additional files in order to deploy properly.
 * requirements.txt
 * Procfile
 
-You can install this project's requirements (where applicable) using: pip3 install -r requirements.txt. If you have your own packages that have been installed, then the requirements file needs updated using: pip3 freeze --local > requirements.txt
+
 
 The Procfile can be created with the following command: echo web: node index.js > Procfile
 
@@ -135,7 +138,7 @@ For Heroku deployment, follow these steps to connect your GitHub repository to t
 
 
 
- [GitHub repository](https://github.com/luandretta/), 
+ [GitHub repository](https://github.com/luandretta/quiz-python) 
 
 
 ## Run locally

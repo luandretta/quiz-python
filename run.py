@@ -6,8 +6,10 @@ import os
 import time
 import pyfiglet
 import gspread
+import colorama
+from colorama import Fore, Back
 from google.oauth2.service_account import Credentials
-# import colorama
+colorama.init(autoreset=True)
 
 
 SCOPE = [
@@ -42,18 +44,18 @@ def get_username():
     """
     while True:
         print("Please type your name and press enter:")
-        username = input("Only letters allowed \n").strip()
+        username = input(Fore.BLUE+"Only letters allowed \n").strip()
         if username.isalpha():
-            print("----------------------------")
-            print(f"Hello {username},")
-            print("Each question has four choices(a, b, c or d).")
+            print(Fore.BLUE+"----------------------------")
+            print(f"Hello {Fore.BLUE}{username},")
+            print(f"Each question has four choices {Fore.BLUE}(a, b, c or d).")
             print("Read the question, type your choice and hit enter.\n")
-            print("Good luck!\n")
+            print(Fore.BLUE+"Good luck!\n")
             time.sleep(4)
             clear()
             quiz(username)
             break
-        print(f"{username} is not valid. Try again.")
+        print(f"{Fore.RED}{username} is not valid. Try again.")
 
 
 def quiz(username):
@@ -71,29 +73,29 @@ def quiz(username):
     score = 0
     for question_row in range(2, 12):
         row = question.row_values(question_row)
-        print("----------------------------")
+        print(Fore.BLUE+"----------------------------")
         print(*row, sep='\n')
-        print("----------------------------\n")
+        print(Fore.BLUE+"----------------------------\n")
         user_guesses = verify_input()
         guesses.append(user_guesses)
         if correct_answers[current_question_i] == guesses[current_question_i]:
-            print("You are right, well done!\n")
+            print(f"{Fore.GREEN}You are right, well done!\n")
             score += 1
         else:
-            print("Nope, wrong answer :/ \n")
-        time.sleep(0.5)
+            print(Back.RED+Fore.WHITE+"Nope, wrong answer :/ \n")
+        time.sleep(1.5)
         current_question_i += 1
         clear()
 
     # Displays the user's score
-    print("Calculating your score...\n")
-    time.sleep(2)
-    print(f"You got {score} out of 10 questions right.\n")
+    print(f"{Fore.BLUE}Calculating your score...\n")
+    time.sleep(1)
+    print(f"You got {Fore.YELLOW}{score}{Fore.RESET} out of 10!")
     if score >= 7:
         print("Your result was great, congratulations!\n")
     else:
         print("Learn more and try again!\n")
-    print("----------------------------")
+    print(Fore.BLUE+"----------------------------")
 
     # Updates the worksheet
     guesses.insert(0, username)
@@ -110,7 +112,7 @@ def verify_input():
         choices = ["a", "b", "c", "d"]
         if guess in choices:
             return guess
-        print(f"Try again, {guess} is not valid.\n")
+        print(f"{Fore.RED}Try again, {guess} is not valid.\n")
         time.sleep(1)
 
 
@@ -124,18 +126,19 @@ def play_again():
         print("Do you want to attempt the quiz again?\n")
         choice = input("Choose Y or N and press enter: \n").upper().strip()
         if choice == "Y":
-            print("Let's try it again\n")
-            time.sleep(1.0)
+            try_again = pyfiglet.figlet_format("Let's try it again\n")
+            print(f"{Fore.BLUE} {try_again}")
+            time.sleep(2)
             clear()
             return True
         elif choice == "N":
-            print("Thank you for attempting the quiz!\n")
+            print(f"{Fore.BLUE}Thank you for attempting the quiz!\n")
             game_over = pyfiglet.figlet_format("Game over")
-            print(game_over)
+            print(f"{Fore.BLUE} {game_over}")
             time.sleep(1)
             exit()
         else:
-            print("Please choose Y or N.")
+            print(Fore.RED+"Please choose Y or N.")
 
 
 def main():
@@ -144,10 +147,11 @@ def main():
     Calls the get_username fuction
     """
     # Initial text
-    title = pyfiglet.figlet_format("PYTHON QUIZ")
-    print(title)
-    print("A FREE PYTHON QUIZ FOR NEWBIES")
-    print("----------------------------\n")
+
+    title = (pyfiglet.figlet_format("PYTHON QUIZ"))
+    print(f"{Fore.BLUE} {title}")
+    print(Fore.YELLOW+"A FREE PYTHON QUIZ FOR NEWBIES")
+    print(Fore.BLUE+"-------------------------------\n")
     print("It's a fun way to check your learning progress.\n")
     print("Are you ready to test your skills?\n")
     print("Please follow the steps bellow:\n")

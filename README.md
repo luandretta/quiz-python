@@ -177,7 +177,7 @@ In order for the project to run on Heroku, Heroku is needed to install the depen
 
 The sensitive data needs to be kept secret and Heroku will build the app using the code in the Github. The creds.json file is protected in gitignore file and these credentials are needed in order to connect to API. To allow the Heroku Application to access the spreadsheet the following steps are needed:
 
-* From the new app Settings, click Reveal Config Vars, and set the value of KEY to CREDS (all capital letters), and go to the repository, copy the entire creds.json then paste it into the VALUE field. Then click "Add".
+* From the new app Settings, click Reveal Config Vars, and set the value of KEY to CREDS (all capital letters), and go to the repository, copy the entire creds.json then paste it into the VALUE field. Then click "Add". Add another KEY called PORT and VALUE 8000, then click "Add".
 * Further down, to support dependencies, select Add Buildpack.
 * The order of the buildpacks is important, select Python first, then click "Save changes". Then add Node.js second and click "Save changes" again. If they are not in this order, you can drag them to rearrange them.
 * Go to "Deploy" and select "GitHub" in "Deployment method"

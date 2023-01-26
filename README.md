@@ -78,18 +78,75 @@ This Flowchart was created using drawio to summarise the structure and logic of 
 ![Flowchart](documentation/flowchart%20.png)
 
 
-## Features
+## Existing Features
 
-### Existing Features
-- Username
-- Introduction
-- Quiz
-- Feedback on each question
-- Score
-- Update the spreadsheet
-- Play again
+### Introduction
+- Once the user runs the program, Python Quiz is dsplayed.
 
-### Future Implementations
+![Introduction](documentation/intro.png)
+
+### Username
+
+- User is asked to enter his/her name using letters only.
+
+![Username](documentation/name_input.png)
+
+- When the user enters a valid name, the instructions are displayed.
+
+![Instructions](documentation/instructions.png)
+
+- If user enters a invalid name, he will be asking for a valid username again.
+
+![Invalid Username](documentation/invalid_name.png)
+
+### Quiz
+
+- After the instructions have been displayed, the quiz will start automatically. The questions are presented separately with four options. The user is guided to choose a, b, c or d.
+
+![Questions](documentation/first_question.png)
+
+### Feedback on each question
+
+- If the user's choice is valid, it will be displayed whether he got it right or wrong.
+
+![Correct Choice](documentation/correct_choice.png)
+
+![Wrong Choice](documentation/wrong_choice.png)
+
+- If the input is invalid, the user will be asked until his choice is valid.
+
+![Invalid Choice](documentation/invalid_choice.png)
+
+### Score
+
+- After the 10 questions the score will be displayed.
+
+![Score](documentation/score.png)
+
+### Play again
+
+- The user will be asked if he wants to play again or not.
+
+![Play Again](documentation/play_again.png)
+
+- If the user wants to play again a message to try again will be displayed for 2 seconds and after that the quiz will start again.
+
+![Try Again](documentation/try_again.png)
+
+- If the user doesn't want to play again a a thank you message will be displayed and the application exits.
+
+![Game Over](documentation/game_over.png)
+
+### Run program button
+- The user can press the "RUN PROGRAM" button at any time to restart the program.
+![Run Program Button](documentation/run_program_button.png)
+
+### Update the spreadsheet
+- The answers worksheet is updated correctly.
+![Update](documentation/update.png)
+
+
+## Future Implementations
 - Various question levels
 - Library of questions to be used randomly
 - Graphs to evaluate which questions had the most hits or errors, error and hit percentages for each question. 

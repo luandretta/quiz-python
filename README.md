@@ -16,25 +16,33 @@ A live demo can be found [here](https://quizpython.herokuapp.com/). The Applicat
 * [Technologies Used](#technologies-used)
 * [User Experience](#user-experience-ux)
 * [Design](#design)
-  * [Features](#features)
-  * [Acessibility](#accessibility)
-  * [Color Scheme](#color-scheme)
-  * [Typography](#typography)
-  * [Icons](#icons)
+  * [Flowchart](#flowchart)
+  * [Existing Features](#existing-features)
+  * [Future Implementations](#future-implementations)
 * [Deployment](#deployment)
+  * [Heroku Deployment](#heroku-deployment)
   * [Run locally](#run-locally)
-  * [Testing](#testing)
+* [Testing](#testing)
 * [Credits](#credits)
 
 - - - 
 
 # Technologies Used
+## Language
 * Python3
-* Heroku - to deploy the application
+
+## Libraries
+* os 
+* time
+* colorama
+* pyfiglet
+
+## Frameworks & Tools
+* Heroku Platform - to deploy the application into live enviroment
 * Gitpod - to create the website
 * Github - to store the repository of website and deploy it
-* Libraries - os to clear the terminal, time to cause delay and pyfiglet to create fancy texts
-* Google Sheets API were used to handle the data automation.
+* Google Sheets API: to handle the data automation.
+* [Draw](https://app.diagrams.net/) - to draw a flowchart
 
 For this project a [Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template), which provides all the files I needed to run the mock terminal in the browser.
 
@@ -227,7 +235,7 @@ CI Python Linter was used to validate this project, no errors were returned.
 |20| Input y or n | Type y in smallcase | Input is valid| PASS |
 |21| Restart Game Button| Click on the restart game button| The quiz restarts | PASS |
 |22| Update the worksheet| Check the answers in the worksheet| The worksheet was updated with user answers correctly| PASS |
-
+|23| Colors | Run the quiz | Text colors are displayed according to code | PASS |
 
 
 ## Compatibility
@@ -235,18 +243,36 @@ The website displays correctly across different browsers and screen sizes.
 
 It was checked on Chrome, Firefox, Safari and Edge. Using Safari, only the sans-serif font in the header is displayed and not the Ubuntu, but this does not affect the performance of the site.
 
-## Responsiveness
 
 
 ## Solved bugs
-* 
+* When the correct answers from the spreadsheet were accessed for comparison with the user's guesses, the correct answers returned a list with a list.
+
 ![Python Quiz](documentation/bug_1.png)
 
+Fixed this with another variable accessing index zero of the list, which contains all the correct answers.
+
+```
+  answers = SHEET.worksheet("answers").get("B1:K1")
+  correct_answers = answers[0]
+```
+
+* To update the sheet with username and its answers was used append, however the focus was not the username but the answers, so the append method was changed to insert for the updated sheet with the row order properly.
+
+* Added docstring to the first line.
+
+The following changes or additions were made as advised by my mentor, not considered as bugs, but for code improvement:
+
+* Used strip() on inputs to remove unwanted leading or trailing spaces.
+* Better explanation of input requirements.
+* Descriptive name instead of using i or j.
+* Add a main function 
+* Add a  __name__ == “__main__”  to control the execution of the script.
 
 # Credits
 ## Code
 The following sources were used for this project:
-- Python Essentials from Code Institut
+- Python Essentials from [Code Institut](https://codeinstitute.net/de/)
 - [Gspread](https://docs.gspread.org/en/latest/user-guide.html#getting-all-values-from-a-row-or-a-column)
 - [Develop Google Sheets solutions](https://developers.google.com/sheets/api/guides/values)
 - [W3 Schools](https://www.w3schools.com/python/default.asp#gsc.tab=0)
@@ -259,12 +285,13 @@ The following sources were used for this project:
 
 
 ## Acknowledgements
-* My family for their patiences as I disappeared to code during the Christmas time.
+* To my amazing family for their patiences.
 
-* My husband for all the support and help to solve the bugs.
+* To God, who guides me to find all the guidance I need to program.
 
 * My Mentor Brian Macharia for continuous helpful feedback.
 
 - - - 
 
 Developed By Lucimeri Andretta for Code Institute's Portfolio Project 3 - 2023
+Feel free to connect with me on [Linkedin](www.linkedin.com/in/luandretta) :)

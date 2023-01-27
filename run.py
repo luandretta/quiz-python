@@ -32,7 +32,8 @@ def clear():
     """
     Clears the terminal
     """
-    os.system("cls" if os.name == "nt" else "clear")
+    #os.system("cls" if os.name == "nt" else "clear")
+    print('\033c')
 
 
 def get_username():
@@ -146,7 +147,6 @@ def main():
     Calls the get_username fuction
     """
     # Initial text
-
     title = (pyfiglet.figlet_format("PYTHON QUIZ"))
     print(f"{Fore.GREEN} {title}")
     print("A FREE PYTHON QUIZ FOR NEWBIES")
@@ -162,4 +162,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # Execute main Python function
     main()

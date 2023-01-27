@@ -2,7 +2,6 @@
 A FREE PYTHON QUIZ FOR NEWBIES
 autor: Lucimeri Andretta
 """
-# import os
 import time
 import pyfiglet
 import gspread
@@ -33,7 +32,6 @@ def clear():
     """
     Clears the terminal
     """
-    # os.system("cls" if os.name == "nt" else "clear")
     print('\033c')
 
 
@@ -48,9 +46,9 @@ def get_username():
         print("Please type your name and press enter:")
         username = input("Only letters allowed \n").strip()
         if username.isalpha():
-            print(Fore.GREEN+"----------------------------")
-            print(f"Hello {Fore.GREEN}{username},")
-            print(f"Each question has four choices {Fore.GREEN}(a, b, c or d)")
+            print(Fore.CYAN+"----------------------------")
+            print(f"Hello {Fore.CYAN}{username},")
+            print(f"Each question has four choices {Fore.CYAN}(a, b, c or d)")
             print("Read the question, type your choice and hit enter.\n")
             print("Good luck!\n")
             time.sleep(6)
@@ -75,13 +73,13 @@ def quiz(username):
     score = 0
     for question_row in range(2, 12):
         row = question.row_values(question_row)
-        print(Fore.GREEN+"----------------------------")
+        print(Fore.CYAN+"----------------------------")
         print(*row, sep='\n')
-        print(Fore.GREEN+"----------------------------\n")
+        print(Fore.CYAN+"----------------------------\n")
         user_guesses = verify_input()
         guesses.append(user_guesses)
         if correct_answers[current_question_i] == guesses[current_question_i]:
-            print(f"{Fore.GREEN}You are right, well done!\n")
+            print(f"{Fore.CYAN}You are right, well done!\n")
             score += 1
         else:
             print(f"{Fore.RED}Nope, wrong answer :/ \n")
@@ -90,14 +88,14 @@ def quiz(username):
         clear()
 
     # Displays the user's score
-    print(f"{Fore.GREEN}Calculating your score...\n")
+    print(f"{Fore.CYAN}Calculating your score...\n")
     time.sleep(1)
-    print(f"You got {Fore.GREEN}{score}{Fore.RESET} out of 10!")
+    print(f"You got {Fore.CYAN}{score}{Fore.RESET} out of 10!")
     if score >= 7:
         print("Your result was great, congratulations!\n")
     else:
         print("Learn more and try again!\n")
-    print(Fore.GREEN+"----------------------------")
+    print(Fore.CYAN+"----------------------------")
 
     # Updates the worksheet
     guesses.insert(0, username)
@@ -128,12 +126,12 @@ def play_again():
         choice = input("Choose Y or N and press enter: \n").upper().strip()
         if choice == "Y":
             try_again = pyfiglet.figlet_format("Let's try it again\n")
-            print(f"{Fore.GREEN} {try_again}")
+            print(f"{Fore.CYAN} {try_again}")
             time.sleep(2)
             clear()
             return True
         elif choice == "N":
-            print(f"{Fore.GREEN}Thank you for attempting the quiz!\n")
+            print(f"{Fore.CYAN}Thank you for attempting the quiz!\n")
             game_over = pyfiglet.figlet_format("Game over")
             print(f"{Fore.RED} {game_over}")
             time.sleep(1)
@@ -149,9 +147,9 @@ def main():
     """
     # Initial text
     title = (pyfiglet.figlet_format("PYTHON QUIZ"))
-    print(f"{Fore.GREEN} {title}")
+    print(f"{Fore.CYAN} {title}")
     print("A FREE PYTHON QUIZ FOR NEWBIES")
-    print(Fore.GREEN+"-------------------------------\n")
+    print(Fore.CYAN+"-------------------------------\n")
     print("It's a fun way to check your learning progress.\n")
     print("Are you ready to test your skills?\n")
     print("Please follow the steps bellow:\n")

@@ -241,7 +241,7 @@ The url for this website can be found [here](https://quizpython.herokuapp.com/)
 
 ## Create data model and integrate using an API
 
-- Create a Spreadsheet (Data Model)
+- **Create a Spreadsheet (Data Model)**
 
 1. Login to your Google account, create an account if necessary.
 2. Navigate to Sheets, Googles version of Microsoft Excel.
@@ -250,7 +250,7 @@ The url for this website can be found [here](https://quizpython.herokuapp.com/)
 5. Add the data according to the screenshot in [Used-technologies](#used-technologies).
 
 
-- Setup API
+- **Setup API**
 
 1. Navigate to Google Cloud Platform.
 2. If you do not already have a profile then follow the basic steps for creating an Account, via clicking on the 'Get Started for Free' button in the upper right corner.
@@ -367,13 +367,16 @@ Fixed this with another variable accessing index zero of the list, which contain
 
 * Added docstring to the first line.
 
+* The Python Quiz logo was showing up after call clear. If the user scrowlls up, he/she could see the half of the logo. Fixed the function clear with print('\033c') and not using os.
+
+
 The following changes or additions were made as advised by my mentor, not considered as bugs, but for code improvement:
 
 * Used strip() on inputs to remove unwanted leading or trailing spaces.
 * Better explanation of input requirements.
 * Descriptive name instead of using i or j.
 * Add a main function 
-* Add a  __name__ == “__main__”  to control the execution of the script.
+* Add a ``` __name__ == “__main__” ``` to control the execution of the script.
 
 # Credits
 ## Code

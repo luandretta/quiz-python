@@ -22,6 +22,7 @@ A live demo can be found [here](https://quizpython.herokuapp.com/). The Applicat
 * [Deployment](#deployment)
   * [Heroku Deployment](#heroku-deployment)
   * [Run locally](#run-locally)
+  * [Create data model and integrate using an API](#create-data-model-and-integrate-using-an-api)
 * [Testing](#testing)
 * [Credits](#credits)
 
@@ -173,11 +174,11 @@ Deployments steps are as follows, after account setup:
 * Click on Create App.
 
 In order for the project to run on Heroku, Heroku is needed to install the dependencies. 
-* In the terminal write the following commando 'pip3 freeze > requirements.txt' to create a list of requirements. The list of dependencies will go into .requirements.txt file.
+* In the terminal write the following commando `pip3 freeze > requirements.txt` to create a list of requirements. The list of dependencies will go into `requirements.txt` file.
 
 The sensitive data needs to be kept secret and Heroku will build the app using the code in the Github. The creds.json file is protected in gitignore file and these credentials are needed in order to connect to API. To allow the Heroku Application to access the spreadsheet the following steps are needed:
 
-* From the new app Settings, click Reveal Config Vars, and set the value of KEY to CREDS (all capital letters), and go to the repository, copy the entire creds.json then paste it into the VALUE field. Then click "Add". Add another KEY called PORT and VALUE 8000, then click "Add".
+* From the new app Settings, click Reveal Config Vars, and set the value of KEY to **CREDS** (all capital letters), and go to the repository, copy the entire`creds.json` then paste it into the VALUE field. Then click "Add". Add another KEY called **PORT** and VALUE **8000**, then click "Add".
 * Further down, to support dependencies, select Add Buildpack.
 * The order of the buildpacks is important, select Python first, then click "Save changes". Then add Node.js second and click "Save changes" again. If they are not in this order, you can drag them to rearrange them.
 * Go to "Deploy" and select "GitHub" in "Deployment method".
@@ -190,6 +191,35 @@ The sensitive data needs to be kept secret and Heroku will build the app using t
 
 
 ## Run locally
+
+**Making a Local Clone**
+1. Login or Sign Up to GitHub.
+2. Open the project [repository](https://github.com/luandretta/quiz-python).
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in the code editor of your choice and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
+Add the files in your new local repository. This stages them for the first commit:
+```bash
+$ git add .
+```
+
+To unstage a file, use:
+```bash
+$ git reset HEAD YOUR-FILE
+```
+
+Commit the files that you've staged in your local repository:
+```bash
+$ git commit -m "First commit"
+# Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
+```
+
+Push the changes in your local repository to GitHub.com:
+```bash
+$ git push origin main
+# Pushes the changes in your local repository up to the remote repository you specified as the origin
+```
 
 **Forking the GitHub Repository**
 To fork this website to either propose changes or to use as an idea for another website, follow these steps:
@@ -256,13 +286,13 @@ Enable API within IDE
 - From within your GitPod IDE terminal, enter 'pip3 install gspread google-auth'.
 
 - At the top of your Python file add the following lines:
-```
+```python
 import gspread
 from google.oauth2.service_account import Credentials
 ```
 
 - Below this add the following code:
-```
+```phyton
     SCOPE = [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive.file",

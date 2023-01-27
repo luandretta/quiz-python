@@ -2,12 +2,12 @@
 A FREE PYTHON QUIZ FOR NEWBIES
 autor: Lucimeri Andretta
 """
-import os
+# import os
 import time
 import pyfiglet
 import gspread
 import colorama
-from colorama import Fore, Back
+from colorama import Fore
 from google.oauth2.service_account import Credentials
 colorama.init(autoreset=True)
 
@@ -28,11 +28,12 @@ answers = SHEET.worksheet("answers").get("B1:K1")
 correct_answers = answers[0]
 choices = ["a", "b", "c", "d"]
 
+
 def clear():
     """
     Clears the terminal
     """
-    #os.system("cls" if os.name == "nt" else "clear")
+    # os.system("cls" if os.name == "nt" else "clear")
     print('\033c')
 
 
@@ -49,10 +50,10 @@ def get_username():
         if username.isalpha():
             print(Fore.GREEN+"----------------------------")
             print(f"Hello {Fore.GREEN}{username},")
-            print(f"Each question has four choices {Fore.GREEN}(a, b, c or d).")
+            print(f"Each question has four choices {Fore.GREEN}(a, b, c or d)")
             print("Read the question, type your choice and hit enter.\n")
             print("Good luck!\n")
-            time.sleep(8)
+            time.sleep(6)
             clear()
             quiz(username)
             break

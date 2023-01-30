@@ -346,8 +346,7 @@ CI Python Linter was used to validate this project, no errors were returned.
 Video recorded and edited with testing:
 
 
-![Testing](documentation/testing.mp4)
-
+![Testing](https://user-images.githubusercontent.com/113333171/215458158-93a40e6b-90d6-483b-a4d0-ca6a51c670af.mp4)
 
 ## Compatibility
 The website displays correctly across different browsers and screen sizes.

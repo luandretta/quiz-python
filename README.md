@@ -367,7 +367,7 @@ Fixed this with another variable accessing index zero of the list, which contain
 
 * Added docstring to the first line.
 
-* The Python Quiz logo was showing up after call clear. If the user scrowlls up, he/she could see the half of the logo. Fixed the function clear with print('\033c') and not using os.
+* The Python Quiz logo was showing up after call clear. If the user scrowlls the screen up, he/she could see the half of the logo. Fixed the function clear with print('\033c') and not using os.
 
 
 The following changes or additions were made as advised by my mentor, not considered as bugs, but for code improvement:

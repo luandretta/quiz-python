@@ -99,6 +99,7 @@ def quiz(username):
 
     # Updates the worksheet
     guesses.insert(0, username)
+    guesses.append(score)
     worksheet_to_update.append_row(guesses)
 
 

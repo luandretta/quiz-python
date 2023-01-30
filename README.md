@@ -42,6 +42,7 @@ A live demo can be found [here](https://quizpython.herokuapp.com/). The Applicat
 * Heroku Platform - to deploy the application into live enviroment
 * Gitpod - to create the website
 * Github - to store the repository of website and deploy it
+* QuickTime Player - to record and edit the video
 * Google Sheets API: to handle the data automation.
 * [Draw](https://app.diagrams.net/) - to draw a flowchart
 
@@ -319,15 +320,15 @@ CI Python Linter was used to validate this project, no errors were returned.
 
 |N.| Test Label | Test Action | Expected Outcome | Test Outcome |
 |:---|:--- |:--- |:--- |:--- |
-|1| Type valid username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
-|2| Type invalid username | On input field, attempt to type a invalid username (with numbers) | Username was invalid and user needs to enter a valid username | PASS |
-|3| Type whitespaces before username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
-|4| Quiz questions| The quiz starts with the first question, after a valid choice from user, runs the following question | All questions are displayed correctly| PASS |
-|5| Valid choice | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
-|6| Invalid choice | On input field, attempt to type a invalid choice (number, empty and other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
-|7| Display correct answer| Type a correct answer | It displays a message confirming the correct choice| PASS |
-|8| Display incorrect answer| Type a incorrect answer | It displays a message confirming the incorrect choice| PASS |
-|9| Score 10 | Attempt to score 10 | The score increases by one for each right choice and total = 10| PASS |
+|01| Type valid username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
+|02| Type invalid username | On input field, attempt to type a invalid username (with numbers) | Username was invalid and user needs to enter a valid username | PASS |
+|03| Type whitespaces before username | On input field, attempt to type a valid username (only alpha caracters) | Username was valid and the application continues| PASS |
+|04| Quiz questions| The quiz starts with the first question, after a valid choice from user, runs the following question | All questions are displayed correctly| PASS |
+|05| Valid choice | On input field, attempt to type a valid choice (a, b, c or d) | Choice was valid and the quiz continues| PASS |
+|06| Invalid choice | On input field, attempt to type a invalid choice (number, empty and other invalid alpha) | Choice was invalid and user needs to enter a valid choice to continue the quiz| PASS |
+|07| Display correct answer| Type a correct answer | It displays a message confirming the correct choice| PASS |
+|08| Display incorrect answer| Type a incorrect answer | It displays a message confirming the incorrect choice| PASS |
+|09| Score 10 | Attempt to score 10 | The score increases by one for each right choice and total = 10| PASS |
 |10| Score 5 | Attempt to score 5 | The score increases by one for each right choice and total = 5| PASS |
 |11| Score 0 | Attempt to score 0 | The score will be 0 | PASS |
 |12| Final message score >= 7 | Score 7 or more  | It displays a congratulation message correctly | PASS |
@@ -345,15 +346,11 @@ CI Python Linter was used to validate this project, no errors were returned.
 
 Video recorded and edited with testing:
 
-
 ![Testing](documentation/testing.mp4)
 
 
 ## Compatibility
 The website displays correctly across different browsers and screen sizes.
-
-It was checked on Chrome, Firefox, Safari and Edge. Using Safari, only the sans-serif font in the header is displayed and not the Ubuntu, but this does not affect the performance of the site.
-
 
 
 ## Solved bugs
@@ -373,6 +370,11 @@ Fixed this with another variable accessing index zero of the list, which contain
 * Added docstring to the first line.
 
 * The Python Quiz logo was showing up after call clear. If the user scrowlls the screen up, he/she could see the half of the logo. Fixed the function clear with print('\033c') and not using os.
+
+* The BLUE color did not get good contrast on some monitors, so it was changed to CYAN and the yellow and green colors to white. The screenshots were taken before the final color adjustments, but the final result can be evaluated through video testing or live.
+
+
+If the user types in a choice, clicks enter and quickly types in another choice, this value will be considered as the next input. The fast input bug might have something to do with how Python processes inputs from the Linux terminal. In most cases the user types his choice after reading the question and options and not quickly after clicking on enter. 
 
 
 The following changes or additions were made as advised by my mentor, not considered as bugs, but for code improvement:
@@ -409,3 +411,4 @@ The following sources were used for this project:
 
 Developed By Lucimeri Andretta for Code Institute's Portfolio Project 3 - 2023
 Feel free to connect with me on [Linkedin](www.linkedin.com/in/luandretta) :)
+

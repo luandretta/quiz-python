@@ -343,6 +343,11 @@ CI Python Linter was used to validate this project, no errors were returned.
 |22| Update the worksheet| Check the answers in the worksheet| The worksheet was updated with user answers correctly| PASS |
 |23| Colors | Run the quiz | Text colors are displayed according to code | PASS |
 
+Video recorded and edited with testing:
+
+
+![Testing](documentation/testing.mp4)
+
 
 ## Compatibility
 The website displays correctly across different browsers and screen sizes.

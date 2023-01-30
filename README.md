@@ -372,6 +372,8 @@ Fixed this with another variable accessing index zero of the list, which contain
 
 * The BLUE color did not get good contrast on some monitors, so it was changed to CYAN and the yellow and green colors to white. The screenshots were taken before the final color adjustments, but the final result can be evaluated through video testing or live.
 
+* The testing video didn't work in Gitpod, so it was added by drag and drop directly on Github. Because of this, a merge was necessary. 
+
 
 If the user types in a choice, clicks enter and quickly types in another choice, this value will be considered as the next input. The fast input bug might have something to do with how Python processes inputs from the Linux terminal. In most cases the user types his choice after reading the question and options and not quickly after clicking on enter. 
 
@@ -409,5 +411,6 @@ The following sources were used for this project:
 - - - 
 
 Developed By Lucimeri Andretta for Code Institute's Portfolio Project 3 - 2023
+This code will not be changed until the end of the course.
 Feel free to connect with me on [Linkedin](www.linkedin.com/in/luandretta) :)
 
